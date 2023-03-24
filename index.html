@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Entrar</title>
+	<style>
+		body {
+			background-color: #377898;
+			font-family: sans-serif;
+		}
+		.container {
+			background-color: #4393AC;
+			width: 1150px;
+			margin: 50px auto;
+			padding: 20px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+			border-radius: 15px;
+		}
+		h1 {
+			text-align: center;
+			color: #ffffff;
+		}
+		label {
+			display: block;
+			margin-top: 10px;
+			color: #377898;
+			font-weight: bold;
+		}
+		input[type="text"], input[type="password"] {
+			width: 100%;
+			padding: 10px;
+			margin-top: 5px;
+			margin-bottom: 20px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+		}
+		input[type="submit"] {
+			background-color: #377898;
+			color: #ffffff;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		input[type="submit"]:hover {
+			background-color: #e67e22;
+		}
+		.google-btn {
+			background-color: #ffffff;
+			color: #a5a5a5;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			width: 100%;
+			margin-top: 20px;
+		}
+		.google-btn:hover {
+			background-color: #ffffff;
+		}
+		.google-icon {
+			width: 20px;
+			height: 20px;
+			margin-right: 5px;
+		}
+		.forgot-password {
+			text-align: right;
+			margin-bottom: 20px;
+		}
+		.register {
+			text-align: center;
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Tela de Login</h1>
+		<form>
+			<label for="username">Usuário:</label>
+			<input type="text" id="username" name="username" required>
+			<label for="password">Senha:</label>
+			<input type="password" id="password" name="password" required>
+			<div class="forgot-password">
+				<a href="#">Esqueceu a senha?</a>
+			</div>
+			<input type="submit" value="Entrar">
+		</form>
+		<button class="google-btn">
+			<img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg">
+			Entrar com o Google
+		</button>
+		<div class="register">
+			<a href="#">Não tem uma conta? Cadastre-se</a>
+		</div>
+	</div>
+</body>
+</html>
