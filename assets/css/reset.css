@@ -1,0 +1,129 @@
+:root {
+    --color-primary: #377898;
+    --color-primary-light: #4393ac;
+    --color-secondary: #fb5f2e;
+    --color-secondary-light: #f38143;
+    --color-secondary-dark: #e44617;
+
+    --color-success: #1CBB59;
+    --color-almost: #37D8D6;
+    --color-wrong: #304D5B;
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+}
+
+.bg-secondary {
+    background-color: var(--color-secondary);
+}
+
+.bg-light {
+    background-color: var(--color-primary-light);
+}
+
+.bg-primary-custom {
+    background-color: var(--color-primary);
+}
+
+.bg-secondary-custom {
+    background-color: var(--color-secondary);
+}
+
+.bg-light-custom {
+    background-color: var(--color-primary-light);
+}
+
+.bg-success-custom {
+    background-color: var(--color-success);
+}
+
+.bg-almost-custom {
+    background-color: var(--color-almost);
+}
+
+.bg-wrong-custom {
+    background-color: var(--color-wrong);
+}
+
+.text-primary-custom {
+    color: white;
+}
+
+.text-primary-dark-custom {
+    color: var(--color-wrong);
+}
+
+.text-secondary-custom {
+    color: var(--color-secondary-dark);
+}
+
+.text-light-custom {
+    color: var(--color-almost);
+}
+
+.btn-primary-custom {
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: 30px;
+    padding: 10px 25px;
+    position: relative;
+}
+
+.btn-primary-custom:hover {
+    color: white;
+}
+
+.btn-primary-custom.btn-underline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background-color: var(--color-almost);
+    transform: scaleX(0);
+    transition: transform 300ms ease-in-out;
+}
+
+.btn-primary-custom.btn-underline:hover::before,
+.btn-primary-custom.btn-underline:focus::before {
+    transform: scaleX(1);
+}
+
+.btn-primary-custom.btn-border-pop::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 3px solid var(--color-primary);
+    border-radius: 30px;
+    transition: top, left, right, bottom, 100ms ease-in-out;
+}
+
+.btn-primary-custom.btn-border-pop:hover::before,
+.btn-primary-custom.btn-border-pop:focus::before {
+    top: calc(3px * -2);
+    left: calc(3px * -2);
+    right: calc(3px * -2);
+    bottom: calc(3px * -2);
+}
+
+.text-link:hover{
+    color: var(--color-secondary-dark);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+ul, li {
+    padding: 0;
+}
