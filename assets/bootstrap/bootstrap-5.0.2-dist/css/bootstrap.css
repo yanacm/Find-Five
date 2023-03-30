@@ -7320,7 +7320,7 @@ textarea.form-control-lg {
 }
 
 .text-wrap {
-  white-space: normal !important;
+  /* white-space: normal !important; */
 }
 
 .text-nowrap {
