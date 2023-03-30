@@ -111,6 +111,8 @@
     bottom: calc(3px * -2);
 }
 
+.btn-secondary
+
 .text-link:hover{
     color: var(--color-secondary-dark);
 }

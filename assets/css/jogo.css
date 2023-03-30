@@ -1,0 +1,55 @@
+.grid-palavras .row .col {
+    height: 65px;
+    margin: 10px 5px;
+    border-radius: 8px;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.grid-palavras .row .empty {
+    background-color: var(--color-primary-light);
+}
+
+.grid-palavras .row .wrong {
+    background-color: var(--color-wrong);
+}
+
+.grid-palavras .row .almost {
+    background-color: var(--color-almost);
+}
+
+.grid-palavras .row .correct {
+    background-color: var(--color-success);
+}
+
+.tecla.wrong {
+    background-color: #f7693a99 !important;
+}
+
+.tecla.almost {
+    background-color: var(--color-almost) !important;
+}
+
+.tecla.correct {
+    background-color: var(--color-success) !important;
+}
+
+
+
+.tecla {
+    font-weight: bolder;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+@media (max-width: 767.98px) {
+    .grid-palavras .row .col {
+        height: 45px;
+        margin: 1px 1px;
+
+    }
+
+    .tecla {
+        font-size: 12px;
+    }
+}
