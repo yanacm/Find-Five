@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/img/icon-find-five.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <link rel="stylesheet" href="../assets/bootstrap/bootstrap-5.0.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/normalize.css">
+
+    <title>Estatisticas</title>
+    <style>
+        body {
+            background-color: #377898;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .square2 {
+            background-color: #4393AC;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 550px;
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        img {
+            position: absolute;
+            top: 72.5%;
+            left: -4.4%;
+        }
+
+        a {
+            position: absolute;
+            margin-top: -100px;
+            left: -4.5%;
+            font-size: 20px;
+            color: #F95F2D;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="square2">
+        <div>
+            <a href="jogo.html">Voltar</a>
+        </div>
+
+        <div class="img">
+            <img src="D:\trabalho de web\Find-Five\assets\img\logo.png" width="22%" height="45%">
+        </div>
+
+        <h1 style="text-align: center; font-size: 125%;">Distribuição de tentativas</h1>
+        <script type="text/javascript">
+            window.onload = function () {
+
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    theme: "dark2",
+                    animationEnabled: true,
+                    backgroundColor: "transparent",
+                    axisY: {
+                        titleFontSize: 20,
+                        labelFontSize: 20,
+                        gridThickness: 0,
+                        lineThickness: 1
+                    },
+
+                    axisX: {
+                        title: "Nº de tentativas",
+                        titleFontSize: 20,
+                        labelFontSize: 20,
+                        gridThickness: 0,
+                        lineThickness: 1
+                    },
+
+                    data: [
+                        {
+                            type: "bar",
+                            dataPoints: [
+                                { label: "💀", y: 5, color: "#F95F2D", indexLabel: 5 + "%" },
+                                { label: "6", y: 15, color: "#F95F2D", indexLabel: 15 + "%", indexLabelAlign: "right" },
+                                { label: "5", y: 15, color: "#F95F2D", indexLabel: 15 + "%", indexLabelAlign: "right" },
+                                { label: "4", y: 20, color: "#F95F2D", indexLabel: 20 + "%", indexLabelAlign: "right" },
+                                { label: "3", y: 30, color: "#F95F2D", indexLabel: 30 + "%", indexLabelAlign: "right" },
+                                { label: "2", y: 10, color: "#F95F2D", indexLabel: 10 + "%", indexLabelAlign: "right" },
+                                { label: "1", y: 5, color: "#F95F2D", indexLabel: 5 + "%", indexLabelAlign: "right" }
+
+                            ],
+                            indexLabelPlacement: "outside",
+                            indexLabelFontSize: "17"
+                        }
+                    ],
+                });
+                chart.render();
+
+            }
+        </script>
+        </head>
+
+        <body>
+            <div id="chartContainer" style="height: 1500px; width: 75%;"></div>
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+    </div>
+
+</body>
+
+</html>
