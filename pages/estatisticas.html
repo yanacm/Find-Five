@@ -48,7 +48,7 @@
         img {
             position: absolute;
             top: 72.5%;
-            left: -4.4%;
+            left: -6.4%;
         }
 
         a {
@@ -64,6 +64,7 @@
 <body>
 
     <div class="square2">
+
         <div>
             <a href="jogo.html">Voltar</a>
         </div>
@@ -72,7 +73,32 @@
             <img src="../assets/img/logo.png" width="22%" height="45%">
         </div>
 
-        <h1 style="text-align: center; font-size: 125%;">Distribuição de tentativas</h1>
+        <h1 style="text-align: center; font-size: 125%;">Distribuição de tentativas<br style="line-height: 1.5%;">ㅤ</h1>
+
+        <div>
+            <table style="width: 100%; line-height: 95%; align-content:center; vertical-align: baseline;">
+                <tr style=" font-size: 110%;">
+                    <th style="color: #F95F2D;" >100</th>
+                    <th>ㅤㅤ</th>
+                    <th style="color: #F95F2D;">95%</th>
+                    <th>ㅤㅤ</th>
+                    <th style="color: #F95F2D;">2</th>
+                    <th>ㅤㅤ</th>
+                    <th style="color: #F95F2D;">93</th>
+                  </tr>
+
+                <tr>
+                    <td style="margin-top: 100px;">Jogos</td>
+                    <td>ㅤㅤ</td>
+                    <td>de vitórias</td>
+                    <td>ㅤㅤ</td>
+                    <td>vitórias<br> seguidas</td>
+                    <td>ㅤㅤ</td>
+                    <td>melhor<br>sequência</td>
+                </tr>
+            </table>
+        </div>
+
         <script type="text/javascript">
             window.onload = function () {
 
@@ -80,11 +106,11 @@
                     theme: "dark2",
                     animationEnabled: true,
                     backgroundColor: "transparent",
+
                     axisY: {
-                        titleFontSize: 20,
-                        labelFontSize: 20,
+                        labelFontSize: 0,
                         gridThickness: 0,
-                        lineThickness: 1
+                        lineThickness: 0
                     },
 
                     axisX: {
@@ -93,6 +119,19 @@
                         labelFontSize: 20,
                         gridThickness: 0,
                         lineThickness: 1
+                    },
+
+                    legend: {
+                        cursor: "pointer",
+                        itemclick: function (e) {
+                            if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                                e.dataSeries.visible = false;
+                            }
+                            else {
+                                e.dataSeries.visible = true;
+                            }
+                            chart.render();
+                        }
                     },
 
                     data: [
