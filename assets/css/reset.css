@@ -8,6 +8,8 @@
     --color-success: #1CBB59;
     --color-almost: #37D8D6;
     --color-wrong: #304D5B;
+
+    --color-modal:#4394acc6;
 }
 
 .bg-primary {
@@ -32,6 +34,10 @@
 
 .bg-light-custom {
     background-color: var(--color-primary-light);
+}
+
+.bg-modal {
+    background-color: var(--color-modal);
 }
 
 .bg-success-custom {

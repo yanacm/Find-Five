@@ -15,56 +15,26 @@
   <link rel="stylesheet" href="../assets/css/reset.css">
   <link rel="stylesheet" href="../assets/css/jogo.css">
 </head>
-<style>
-  body {
-      font-family: 'Poppins', sans-serif;
-      /*margin: 8px 1160px;*/
-  }
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: #377898;
-  }
-
-  
-  li a,i {
-    display: inline-block;
-    color: #ffffff;
-    padding: 8px 8px;
-    text-decoration: none;
-  }
-  
-  /* Change the link color on hover */
-  li a:hover {
-    color: #ffffff;
-  }
-
-  li:hover {
-    background-color: #fb5f2e;
-  }
-
-  @media (max-width: 767.98px) {
-    ul {
-      text-align: center;
-    }
-    li a,i {
-      padding: 7px;
-    }
-    li {
-      display: inline-block;
-      font-size: 19px;
-      text-align: center;
-    }
-    li:hover {
-      background-color: #377898;
-    }
-  }
-
-  </style>
 <body class="bg-primary-custom">
   <div class="container-fluid px-md-5 d-flex flex-column" style="height: 100vh;">
+    <!--modal final da partida-->
+    <div class="modal fade" id="modalEnd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-modal">
+          <div class="modal-header position-relative text-end border-0">
+            <button class="position-absolute top-0 end-0 btn" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <div class="modal-body text-center mx-0 mx-sm-4 mt-5 px-sm-5">
+            <div class="my-4 mx-sm-2">
+              <h3 class="text-white">Parabéns!!</h3>
+              <h3 class="text-white mb-5">Você acertou a palavra</h3>
+            </div>
+            <button class="btn bg-none text-white m-3 mt-3" data-bs-dismiss="modal"><i class="fa-solid fa-rotate-right"></i>Jogar novamente</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end modal-->
     <div class="row flex-grow-1">
       <div class="col d-flex d-md-none justify-content-center align-items-center">
         <img src="../assets/img/logo.png" alt="logo-find-five" width="90">
@@ -329,7 +299,7 @@
               </div>
               <div class="col-1 d-flex align-items-center justify-content-center">
                 <button
-                  class="delete tecla btn bg-secondary-custom text-capitalize text-white text-center w-100 py-3 px-2 p-md-1 d-flex align-items-center justify-content-center"
+                  class="delete tecla btn bg-secondary-custom text-capitalize text-white text-center w-100 py-2 px-2 p-md-1 d-flex align-items-center justify-content-center"
                   type="button"><i class="fa-solid fa-delete-left"></i></button>
               </div>
             </div>
@@ -375,13 +345,22 @@
               </div>
               <div class="col-3 col-md-2 d-flex align-items-center justify-content-center">
                 <button
-                  class="tecla btn bg-secondary-custom text-capitalize text-white w-100 py-3 px-2 p-md-2 d-flex align-items-center justify-content-center"
+                  class="tecla-enter tecla btn bg-secondary-custom text-capitalize text-white w-100 py-3 px-2 p-md-2 d-flex align-items-center justify-content-center"
                   type="button">enter</button>
               </div>
             </div>
         </div>
       </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script>
+    const openModalButton = document.querySelector('.tecla-enter');
+    const myModal = new bootstrap.Modal(document.getElementById("modalEnd"));
+
+    openModalButton.addEventListener("click", function() {
+      myModal.show();
+    });
+  </script>
 </body>
 
 </html>
