@@ -1,5 +1,5 @@
 .grid-palavras .row .col {
-    height: 65px;
+    height: 55px;
     margin: 10px 5px;
     border-radius: 8px;
     font-size: 30px;
@@ -11,8 +11,8 @@
     position: absolute;
     width: 100%;
     text-align: center;
-    height: 65px;
-    line-height: 65px;
+    height: 55px;
+    line-height: 55px;
     border-radius: 8px;
     top: 0;
     left: 0;
@@ -22,7 +22,7 @@
 
 .grid-palavras .row .col .front {
     transform: rotateY(0deg);
-    line-height: 55px;
+    line-height: 46px;
 }
 
 .grid-palavras .row .col:hover .front {
@@ -57,6 +57,13 @@
     background-color: var(--color-success);
 }
 
+.tecla {
+    font-weight: bolder;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 5px 7px !important;
+}
+
 .tecla.wrong {
     background-color: #f7693a99 !important;
 }
@@ -67,13 +74,6 @@
 
 .tecla.correct {
     background-color: var(--color-success) !important;
-}
-
-.tecla {
-    font-weight: bolder;
-    border-radius: 5px;
-    font-size: 20px;
-    padding: 8px 8px !important;
 }
 
 .delete {
