@@ -46,6 +46,18 @@ h1 {
     font-size: 25px;
 }
 
+.btn-voltar {
+    position: absolute; 
+    top: 30px; 
+    left: 0;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-voltar:hover {
+    color: white;
+}
+
 .numbers {
     color: #F95F2D;;
     font-size: 28px;
@@ -78,6 +90,10 @@ h1 {
     #chartContainer {
         width: 100% !important;
         height: 250px !important;
+    }
+
+    .btn-voltar {
+        left: 15px !important;
     }
 
 }
