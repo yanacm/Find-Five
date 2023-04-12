@@ -8,18 +8,71 @@
   <title>Find Five | Jogue</title>
   <link rel="icon" type="image/png" href="../assets/img/icon-find-five.png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../assets/bootstrap/bootstrap-5.0.2-dist/css/bootstrap.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../assets/css/normalize.css">
   <link rel="stylesheet" href="../assets/css/reset.css">
   <link rel="stylesheet" href="../assets/css/jogo.css">
 </head>
+<style>
+  body {
+      font-family: 'Poppins', sans-serif;
+      /*margin: 8px 1160px;*/
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #377898;
+  }
 
+  
+  li a,i {
+    display: inline-block;
+    color: #ffffff;
+    padding: 8px 8px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color on hover */
+  li a:hover {
+    color: #ffffff;
+  }
+
+  li:hover {
+    background-color: #fb5f2e;
+  }
+
+  @media (max-width: 767.98px) {
+    ul {
+      text-align: center;
+    }
+    li a,i {
+      padding: 7px;
+    }
+    li {
+      display: inline-block;
+      font-size: 19px;
+      text-align: center;
+    }
+    li:hover {
+      background-color: #377898;
+    }
+  }
+
+  </style>
 <body class="bg-primary-custom">
   <div class="container-fluid px-md-5 d-flex flex-column" style="height: 100vh;">
     <div class="row flex-grow-1">
       <div class="col d-flex d-md-none justify-content-center align-items-center">
         <img src="../assets/img/logo.png" alt="logo-find-five" width="90">
+        <ul>
+          <li></i><a href="regras.html"><i class="fa-solid fa-circle-question"></i></a></li>
+          <li><a href="estatisticas.html"><i class="fa-regular fa-chart-bar"></i></a></li>
+          <li><a href="../index.html"><i class="fa-solid fa-door-open"></i></a></li>
+        </ul>
       </div>
     </div>
     <div class="row justify-content-around justify-content-md-evenly align-items-center flex-grow-1 py-4">
@@ -161,9 +214,11 @@
         </div>
       </div>
       <div class="col-2 d-none d-md-flex flex-md-column align-items-center justify-content-center">
-        <a href="../index.html">Sair</a>
-        <a href="regras.html">Regras</a>
-        <a href="estatisticas.html">Estatisticas</a>
+        <ul>
+          <li><i class="fa-solid fa-circle-question"></i><a href="regras.html">Regras</a></li>
+          <li><i class="fa-regular fa-chart-bar"></i><a href="estatisticas.html">Estatísticas</a></li>
+          <li><i class="fa-solid fa-door-open"></i><a href="../index.html">Sair</a></li>
+        </ul>
       </div>
     </div>
     <div class="row justify-content-center align-items-center mb-md-4 flex-grow-1">
