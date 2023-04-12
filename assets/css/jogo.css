@@ -1,3 +1,38 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #377898;
+}
+
+
+li a,i {
+    display: inline-block;
+    color: #ffffff;
+    padding: 8px 8px;
+    text-decoration: none;
+}
+
+li a:hover {
+    color: #ffffff;
+}
+
+li:hover {
+    background-color: #fb5f2e;
+}
+
+.modal-body h3 {
+    font-size: 50px;
+    font-weight: bolder;
+    line-height: 80px;
+}
+
+.modal-body button {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
 .grid-palavras .row .col {
     height: 55px;
     margin: 10px 5px;
@@ -61,7 +96,7 @@
     font-weight: bolder;
     border-radius: 5px;
     font-size: 20px;
-    padding: 5px 7px !important;
+    padding: 7px 7px !important;
 }
 
 .tecla.wrong {
@@ -77,12 +112,37 @@
 }
 
 .delete {
-    font-size: 30px !important;
+    font-size: 25px !important;
+    padding: 2px 14px !important;
 }
 
 @media (max-width: 767.98px) {
+    ul {
+        text-align: center;
+    }
+    li a,i {
+        padding: 7px;
+    }
+    li {
+        display: inline-block;
+        font-size: 19px;
+        text-align: center;
+    }
+    li:hover {
+        background-color: #377898;
+    }
+
+    .modal-body h3 {
+        font-size: 25px;
+        line-height: 40px;
+    }
+    
+    .modal-body button {
+        font-size: 20px;
+    }
+
     .grid-palavras .row .col {
-        height: 45px;
+        height: 48px;
         margin: 1px 1px;
 
     }
@@ -102,6 +162,6 @@
 
     .delete {
         font-size: 16px !important;
-        padding: 17px 14px !important;
+        padding: 10px 14px !important;
     }
 }
