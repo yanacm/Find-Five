@@ -9,6 +9,15 @@
     display: none;
 }
 
+.btn-menu {
+    color: white;
+    text-decoration: none;
+}
+
+.btn-menu:hover {
+    color: white;
+}
+
 
 @media (max-width: 767.98px) {
     .grid-regras {
