@@ -98,6 +98,7 @@ li:hover {
     border-radius: 5px;
     font-size: 20px;
     padding: 7px 7px !important;
+    transition: all 0.2;
 }
 
 .tecla.wrong {
@@ -110,6 +111,11 @@ li:hover {
 
 .tecla.correct {
     background-color: var(--color-success) !important;
+}
+
+.tecla.press {
+    transform: scale(0.9);
+    transition: all 0.2;
 }
 
 .delete {
