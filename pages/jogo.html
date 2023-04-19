@@ -52,24 +52,24 @@
       <div class="grid-palavras col-10 col-md-5 px-md-5">
         <div class="row px-md-4">
           <div class="col m-1 my-2 d-flex justify-content-center align-items-center text-white">
-            <div class="front write">R</div>
-            <div class="back wrong">R</div>
+            <div class="front write"></div>
+            <div class="back empty"></div>
           </div>
           <div class="col m-1 my-2 d-flex justify-content-center align-items-center text-white">
-            <div class="front write">Ó</div>
-            <div class="back almost">Ó</div>
+            <div class="front write"></div>
+            <div class="back empty"></div>
           </div>
           <div class="col m-1 my-2 d-flex justify-content-center align-items-center text-white correct">
-            <div class="front write">S</div>
-            <div class="back almost">S</div>
+            <div class="front write"></div>
+            <div class="back empty"></div>
           </div>
           <div class="col m-1 my-2 d-flex justify-content-center align-items-center text-white almost">
-            <div class="front write">E</div>
-            <div class="back correct">E</div>
+            <div class="front write"></div>
+            <div class="back empty"></div>
           </div>
           <div class="col m-1 my-2 d-flex justify-content-center align-items-center text-white wrong">
-            <div class="front write">A</div>
-            <div class="back wrong">A</div>
+            <div class="front write"></div>
+            <div class="back empty"></div>
           </div>
         </div>
         <div class="row px-md-4">
@@ -360,6 +360,65 @@
     openModalButton.addEventListener("click", function() {
       myModal.show();
     });
+  </script>
+  <script src="../js/models/game/TecladoFisico.js"></script>
+  <script src="../js/models/game/Letra.js"></script>
+  <script src="../js/models/game/Palavra.js"></script>
+  <script src="../js/models/game/PalavraTentativa.js"></script>
+  <script src="../js/views/EscritaView.js"></script>
+  <script src="../js/views/TentativaView.js"></script>
+  <script>
+    const palavraTenta = new PalavraTentativa();
+    const allStates = ['correct', 'almost', 'wrong']
+    const states = [];
+    let qtd = 0;
+
+    const meuTeclado = new TecladoFisico(tecla => {
+
+      let escrita = new EscritaView(palavraTenta, qtd);
+
+      if(palavraTenta.tamanho > palavraTenta.letras.length){
+
+        if(tecla != 'enter' && tecla != 'backspace'){
+          palavraTenta.addOneLetra(new Letra(tecla.toUpperCase()))
+          escrita.update()
+        }
+
+      }
+
+      if(palavraTenta.letras.length > 0 && tecla == 'backspace'){
+        palavraTenta.removeUltimaLetra();
+        escrita.update()
+      }
+
+      if(palavraTenta.tamanho == palavraTenta.letras.length && tecla == 'enter'){
+        embaralharStates();
+        palavraTenta.addStatesAll(states);
+        const tentativa = new TentativaView(palavraTenta, qtd);
+        tentativa.update()
+        qtd++;
+        palavraTenta.removeLetras();
+        limparStates()
+      }
+    });
+
+    function embaralharStates(){
+      // Seleciona 3 valores aleatórios do array original
+      for (let i = 0; i < 3; i++) {
+        const indiceAleatorio = Math.floor(Math.random() * allStates.length);
+        states.push(allStates[indiceAleatorio]);
+      }
+
+      // Adiciona mais 2 valores aleatórios se o novo array tiver menos de 5 itens
+      while (states.length < 5) {
+        const indiceAleatorio = Math.floor(Math.random() * allStates.length);
+        states.push(allStates[indiceAleatorio]);
+      }
+    }
+
+    function limparStates() {
+      states.splice(0, states.length);
+    }
   </script>
 </body>
 

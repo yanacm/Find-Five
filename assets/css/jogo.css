@@ -60,7 +60,7 @@ li:hover {
     line-height: 46px;
 }
 
-.grid-palavras .row .col:hover .front {
+.grid-palavras .row .col.active .front {
     transform: rotateY(180deg);
 }
 
@@ -68,7 +68,8 @@ li:hover {
     transform: rotateY(180deg);
 }
 
-.grid-palavras .row .col:hover .back {
+
+.grid-palavras .row .col.active .back {
     transform: rotateY(360deg);
 }
 
