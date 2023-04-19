@@ -24,6 +24,15 @@ class EscritaView {
         }
     }
 
+    updateNumero(){
+        if(this.#numero < this.#qtdMax){
+            this.#numero++;
+            const grid  = document.querySelector('.grid-palavras');
+            this.#elemento = grid.children[this.#numero];
+        }
+    }
+
+
     get palavra(){
         return this.#palavra;
     }
