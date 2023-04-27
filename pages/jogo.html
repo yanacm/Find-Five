@@ -361,6 +361,7 @@
       myModal.show();
     });
   </script>
+  <script src="../js/models/game/Teclado.js"></script>
   <script src="../js/models/game/TecladoVirtual.js"></script>
   <script src="../js/models/game/TecladoFisico.js"></script>
   <script src="../js/models/game/Letra.js"></script>
@@ -368,43 +369,22 @@
   <script src="../js/models/game/PalavraTentativa.js"></script>
   <script src="../js/views/EscritaView.js"></script>
   <script src="../js/views/TentativaView.js"></script>
+  <script src="../js/controllers/EscritaController.js"></script>
+  <script src="../js/controllers/TentativaController.js"></script>
   <script>
     const palavraTenta = new PalavraTentativa();
     const allStates = ['correct', 'almost', 'wrong']
     const states = [];
     let qtd = 0;
     const escrita = new EscritaView(palavraTenta, qtd);
+    const controllerGrid = new EscritaController(palavraTenta, escrita);
 
-    const tecladoVirtual = new TecladoVirtual();
+    const tecladoVirtual = new TecladoVirtual(clickTeclado)
 
     const meuTeclado = new TecladoFisico(tecla => {
-
-      
-      console.log(escrita.elemento)
-
-      if(palavraTenta.tamanho > palavraTenta.letras.length){
-
-        if(tecla != 'enter' && tecla != 'backspace'){
-          palavraTenta.addOneLetra(new Letra(tecla.toUpperCase()))
-          escrita.update()
-        }
-
-      }
-
-      if(palavraTenta.letras.length > 0 && tecla == 'backspace'){
-        palavraTenta.removeUltimaLetra();
-        escrita.update()
-      }
-
-      if(palavraTenta.tamanho == palavraTenta.letras.length && tecla == 'enter'){
-        embaralharStates();
-        palavraTenta.addStatesAll(states);
-        const tentativa = new TentativaView(palavraTenta, qtd);
-        tentativa.update()
-        qtd++;
-        escrita.updateNumero();
-        palavraTenta.removeLetras();
-        limparStates()
+      clickTeclado(tecla)
+      if(tecla != 'arrowright' && tecla != 'arrowleft'){
+        tecladoVirtual.clickTeclaFisica(tecla)
       }
     });
 
@@ -424,6 +404,39 @@
 
     function limparStates() {
       states.splice(0, states.length);
+    }
+
+    function clickTeclado(tecla){
+
+      if(tecla == 'arrowright'){
+        palavraTenta.movePointer(1);
+      }
+      if(tecla == 'arrowleft'){
+        palavraTenta.movePointer(-1);
+      }
+
+      if(tecla.match(/^[a-z]$/)){
+          palavraTenta.addLetra(new Letra(tecla.toUpperCase()));
+      }
+
+      if(tecla == 'backspace'){
+        palavraTenta.popLetra();
+      }
+
+      if(palavraTenta.isCompleto() && tecla == 'enter'){
+        embaralharStates();
+        palavraTenta.addStatesAll(states);
+        const tentativa = new TentativaView(palavraTenta, qtd);
+        tentativa.update();
+        qtd++;
+        palavraTenta.resetPalavra();
+        limparStates();
+        escrita.nextLinha();
+        controllerGrid.update(palavraTenta, escrita);
+      }
+      if(!escrita.isCompleto()){
+        escrita.update();
+      }
     }
   </script>
 </body>

@@ -1,19 +1,24 @@
-class TecladoVirtual {
+class TecladoVirtual extends Teclado {
+    constructor(call) {
+        super(call);
+        this.teclas = document.querySelectorAll('.tecla');
 
-    #teclas;
+        this.teclas.forEach(tecla => {
+            tecla.addEventListener('click', this.clickTeclaVirtual.bind(this));
+        });
+    }
 
-    constructor(){
-        this.#teclas = document.querySelectorAll('.tecla');
+    clickTeclaVirtual(elemento) {
+        const tecla = elemento.srcElement;
+        this.callback(tecla.innerHTML || 'backspace');
+        super.clickTecla(tecla);
+    }
 
-        this.#teclas.forEach( tecla => {
-            
-            tecla.addEventListener('click', () => {
-                tecla.classList.add('press')
-
-                setTimeout( () => {
-                    tecla.classList.remove('press')
-                }, 200)
-            })
-        })
+    clickTeclaFisica(valorTecla) {
+        const tecla = [...this.teclas].find(tecla => {
+            return tecla.innerHTML == valorTecla ||
+                (tecla.classList.contains('delete') && valorTecla == 'backspace');
+        });
+        super.clickTecla(tecla);
     }
 }

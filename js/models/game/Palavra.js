@@ -1,11 +1,11 @@
 class Palavra {
-    #tamanho;
+    #tamanhoMax;
     #letras;
     #states;
 
     constructor(){
-        this.#tamanho = 5;
-        this.#letras = [];
+        this.#tamanhoMax = 5;
+        this.#letras = [undefined, undefined, undefined, undefined, undefined];
         this.#states = [];
     }
 
@@ -25,8 +25,8 @@ class Palavra {
         this.#states = states;
     }
 
-    get tamanho(){
-        return this.#tamanho;
+    get tamanhoMax(){
+        return this.#tamanhoMax;
     }
 
     get states() {
@@ -35,5 +35,9 @@ class Palavra {
 
     get letras(){
         return this.#letras;
+    }
+
+    set letras(letrasNovas){
+        this.#letras = letrasNovas
     }
 }
