@@ -145,6 +145,11 @@ li:hover {
     transition: all 0.2;
 }
 
+.tecla:has(.press){
+    transform: scale(0.9);
+    transition: all 0.2; 
+}
+
 .delete {
     font-size: 25px !important;
     padding: 2px 14px !important;

@@ -18,22 +18,7 @@
 <body class="bg-primary-custom">
   <div class="container-fluid px-md-5 d-flex flex-column" style="height: 100vh;">
     <!--modal final da partida-->
-    <div class="modal fade" id="modalEnd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-modal">
-          <div class="modal-header position-relative text-end border-0">
-            <button class="position-absolute top-0 end-0 btn" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
-          </div>
-          <div class="modal-body text-center mx-0 mx-sm-4 mt-5 px-sm-5">
-            <div class="my-4 mx-sm-2">
-              <h3 class="text-white">Parabéns!!</h3>
-              <h3 class="text-white mb-5">Você acertou a palavra</h3>
-            </div>
-            <button class="btn bg-none text-white m-3 mt-3" data-bs-dismiss="modal"><i class="fa-solid fa-rotate-right"></i>Jogar novamente</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div id="box-modal"></div>
     <!--end modal-->
     <div class="row flex-grow-1">
       <div class="col d-flex d-md-none justify-content-center align-items-center">
@@ -353,14 +338,7 @@
       </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <script>
-    const openModalButton = document.querySelector('.tecla-enter');
-    const myModal = new bootstrap.Modal(document.getElementById("modalEnd"));
-
-    openModalButton.addEventListener("click", function() {
-      myModal.show();
-    });
-  </script>
+  <script type="module" src="../js/main.js"></script>
   <script src="../js/models/game/Teclado.js"></script>
   <script src="../js/models/game/TecladoVirtual.js"></script>
   <script src="../js/models/game/TecladoFisico.js"></script>
@@ -371,74 +349,6 @@
   <script src="../js/views/TentativaView.js"></script>
   <script src="../js/controllers/EscritaController.js"></script>
   <script src="../js/controllers/TentativaController.js"></script>
-  <script>
-    const palavraTenta = new PalavraTentativa();
-    const allStates = ['correct', 'almost', 'wrong']
-    const states = [];
-    let qtd = 0;
-    const escrita = new EscritaView(palavraTenta, qtd);
-    const controllerGrid = new EscritaController(palavraTenta, escrita);
-
-    const tecladoVirtual = new TecladoVirtual(clickTeclado)
-
-    const meuTeclado = new TecladoFisico(tecla => {
-      clickTeclado(tecla)
-      if(tecla != 'arrowright' && tecla != 'arrowleft'){
-        tecladoVirtual.clickTeclaFisica(tecla)
-      }
-    });
-
-    function embaralharStates(){
-      // Seleciona 3 valores aleatórios do array original
-      for (let i = 0; i < 3; i++) {
-        const indiceAleatorio = Math.floor(Math.random() * allStates.length);
-        states.push(allStates[indiceAleatorio]);
-      }
-
-      // Adiciona mais 2 valores aleatórios se o novo array tiver menos de 5 itens
-      while (states.length < 5) {
-        const indiceAleatorio = Math.floor(Math.random() * allStates.length);
-        states.push(allStates[indiceAleatorio]);
-      }
-    }
-
-    function limparStates() {
-      states.splice(0, states.length);
-    }
-
-    function clickTeclado(tecla){
-
-      if(tecla == 'arrowright'){
-        palavraTenta.movePointer(1);
-      }
-      if(tecla == 'arrowleft'){
-        palavraTenta.movePointer(-1);
-      }
-
-      if(tecla.match(/^[a-z]$/)){
-          palavraTenta.addLetra(new Letra(tecla.toUpperCase()));
-      }
-
-      if(tecla == 'backspace'){
-        palavraTenta.popLetra();
-      }
-
-      if(palavraTenta.isCompleto() && tecla == 'enter'){
-        embaralharStates();
-        palavraTenta.addStatesAll(states);
-        const tentativa = new TentativaView(palavraTenta, qtd);
-        tentativa.update();
-        qtd++;
-        palavraTenta.resetPalavra();
-        limparStates();
-        escrita.nextLinha();
-        controllerGrid.update(palavraTenta, escrita);
-      }
-      if(!escrita.isCompleto()){
-        escrita.update();
-      }
-    }
-  </script>
+  <script src="../js/main.js" type="module"></script>
 </body>
-
 </html>

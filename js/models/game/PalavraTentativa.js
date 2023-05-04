@@ -82,9 +82,14 @@ class PalavraTentativa extends Palavra {
         return this.#tamanhoAtual === this.tamanhoMax;
     }
 
+    checkGanhou(){
+        console.log(this.states.map( (state) => {state === 'correct'}))
+    }
+
     resetPalavra(){
         this.enablePointer();
         this.letras = [undefined, undefined, undefined, undefined, undefined];
+        this.states = ['empty', 'empty', 'empty', 'empty', 'empty']
         this.#pointer = 0;
         this.#tamanhoAtual = 0;
     }

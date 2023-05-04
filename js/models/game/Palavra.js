@@ -5,8 +5,10 @@ class Palavra {
 
     constructor(){
         this.#tamanhoMax = 5;
-        this.#letras = [undefined, undefined, undefined, undefined, undefined];
-        this.#states = [];
+        this.#letras = new Array(this.#tamanhoMax);
+        this.#states = new Array(this.#tamanhoMax);
+        this.#letras.fill(undefined);
+        this.#states.fill('empty');
     }
 
     addOneLetra(letra){
@@ -39,5 +41,9 @@ class Palavra {
 
     set letras(letrasNovas){
         this.#letras = letrasNovas
+    }
+
+    set states(newStates){
+        this.#states = newStates;
     }
 }
