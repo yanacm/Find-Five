@@ -55,7 +55,7 @@ class EscritaView {
 
     isCompleto(){
         return (this.#linha_atual) === this.#qtd_linhas;
-    }
+    }   
 
     nextLinha(){
         if(!this.isCompleto()){

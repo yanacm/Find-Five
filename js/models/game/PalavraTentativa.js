@@ -3,15 +3,32 @@ class PalavraTentativa extends Palavra {
     #pointer;
     #state_pointer;
     #tamanhoAtual;
+    #can_add;
+
+    contador_correto = 0;
 
     constructor(){
         super();
         this.#pointer = 0;
         this.#state_pointer = true;
         this.#tamanhoAtual = 0;
+        this.contador_correto = 0;
+        this.#can_add = true;
+    }
+
+    disable(){
+        this.#can_add = false;
+    }
+
+    enable(){
+        this.#can_add = true;
     }
 
     addLetra(letra){
+
+        if(!this.#can_add)
+            return;
+        
         if(this.#state_pointer){
             this.letras[this.#pointer] = letra;
             this.#tamanhoAtual = this.#tamanhoAtual < this.tamanhoMax ? this.#tamanhoAtual + 1 : this.tamanhoMax;
@@ -83,7 +100,17 @@ class PalavraTentativa extends Palavra {
     }
 
     checkGanhou(){
-        console.log(this.states.map( (state) => {state === 'correct'}))
+        for(let i = 0; i < this.states.length; i++){
+            if(this.states[i] === "correct"){
+                this.contador_correto++;
+            }
+        }
+
+        if(this.contador_correto == 5){
+            return true;
+        }
+        this.contador_correto = 0;
+        return false;
     }
 
     resetPalavra(){

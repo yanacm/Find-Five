@@ -8,10 +8,18 @@ class Palavra {
         this.#letras = new Array(this.#tamanhoMax);
         this.#states = new Array(this.#tamanhoMax);
         this.#letras.fill(undefined);
+        this.#states.fill('vazio');
+    }
+
+    resetPalavra(){
+        this.#letras = new Array(this.#tamanhoMax);
+        this.#states= new Array(this.#tamanhoMax);
+        this.#letras.fill(undefined);
         this.#states.fill('empty');
     }
 
     addOneLetra(letra){
+        
         this.#letras.push(letra)
     }
 

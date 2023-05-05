@@ -26,11 +26,12 @@ class TentativaView {
                 front.innerHTML = back.innerHTML = letra.valor
                 back.classList.replace('empty', this.#palavra.states[i]);
             })
-    
             this.cardGiro()
-            this.updateNextLinha()
+
+            if(this.#palavra.checkGanhou() == false){
+                this.updateNextLinha()
+            }
         }
-        this.#palavra.checkGanhou()
     }
 
     checkTentativa(){
@@ -90,16 +91,27 @@ class TentativaView {
     }
 
     updateNextLinha(){
+        this.#palavra.disable();
+
         if(this.#numero + 1 < this.#qtdMax){
             let nextLinha = this.#elemento.nextElementSibling;
             setTimeout( () => {
                 let cardsFront = nextLinha.querySelectorAll('.front');
-    
+
                 cardsFront.forEach( card => {
                     card.classList.replace('empty', 'write');
                 })
+                this.#palavra.enable();
             }, 2000)
         }
+    }
+
+
+    reset() {
+        this.#palavra.reset();
+        this.#numero = 0;
+        const grid = document.querySelector('.grid-palavras');
+        this.#elemento = grid.children[this.#numero];
     }
 
     get palavra(){

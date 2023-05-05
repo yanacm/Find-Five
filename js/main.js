@@ -2,13 +2,16 @@ import { ModalController } from "./controllers/ModalController.js";
 import { Sorteio } from "./models/game/Sorteio.js";
 
 const sorteio = new Sorteio();
-console.log(sorteio.palavra)
+
 const palavraTenta = new PalavraTentativa();
+
 let qtd = 0;
 const escrita = new EscritaView(palavraTenta, qtd);
 const controllerGrid = new EscritaController(palavraTenta, escrita);
 
 const tecladoVirtual = new TecladoVirtual(clickTeclado)
+
+const mc = new ModalController();
 
 const meuTeclado = new TecladoFisico(tecla => {
   clickTeclado(tecla)
@@ -18,6 +21,10 @@ const meuTeclado = new TecladoFisico(tecla => {
 });
 
 function clickTeclado(tecla){
+
+  if(palavraTenta.checkGanhou()){
+    return;
+  }
 
   if(tecla == 'arrowright'){
     palavraTenta.movePointer(1);
@@ -38,11 +45,25 @@ function clickTeclado(tecla){
     const tentativa = new TentativaView(palavraTenta, qtd, sorteio);
     tentativa.update();
     qtd++;
+
     palavraTenta.resetPalavra();
     escrita.nextLinha();
-    controllerGrid.update(palavraTenta, escrita);
+    //controllerGrid.update(palavraTenta, escrita); 
+
+    if(palavraTenta.checkGanhou() == true){
+      mc.updateText("ganhou",sorteio.palavra);
+      mc.showModal();
+      return;
+    }
+
+    if(qtd == 6){
+      mc.updateText("perdeu",sorteio.palavra);
+      mc.showModal();
+    }
+
   }
   if(!escrita.isCompleto()){
     escrita.update();
   }
+
 }

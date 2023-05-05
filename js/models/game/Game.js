@@ -1,5 +1,6 @@
 class Game {
     #tentativasGame;
+    #gameState = false;
 
     constructor(){
         this.#tentativasGame = [];
@@ -16,4 +17,13 @@ class Game {
     get tentativas(){
         return this.#tentativasGame;
     }
+
+    get gameState(){
+        return this.gameState;
+    }
+
+    set gameState(booleano){
+        this.gameState = this.booleano;
+    }
+
 }

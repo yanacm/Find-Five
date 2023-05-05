@@ -11,7 +11,7 @@ export class ModalController {
       this.modalView.update(this.model);
     }
 
-    #showModal(){
+    showModal(){
       const myModal = new bootstrap.Modal(document.getElementById("modalEnd"));
       myModal.show();
     }

@@ -7,7 +7,7 @@ export class Sorteio {
     }
 
     sortear(){
-        this.#palavra = 'cones';
+        this.#palavra = 'ponta';
     }
 
     get palavra(){

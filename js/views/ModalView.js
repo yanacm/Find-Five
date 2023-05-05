@@ -4,6 +4,7 @@ export class ModalView {
     constructor(elemento){
         this.elemento = elemento;
     }
+  
 
     template(model){
         return `
@@ -26,8 +27,10 @@ export class ModalView {
       </div>
         `
     }
-
+    
     update(model){
         this.elemento.innerHTML = this.template(model);
     }
+  
+
 }
