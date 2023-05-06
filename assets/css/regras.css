@@ -1,0 +1,26 @@
+.nav-item:hover .sub-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 5px;
+}
+
+.sub-menu {
+    display: none;
+}
+
+.btn-menu {
+    color: white;
+    text-decoration: none;
+}
+
+.btn-menu:hover {
+    color: white;
+}
+
+
+@media (max-width: 767.98px) {
+    .grid-regras {
+        height: auto !important;
+    }
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/img/icon-find-five.png">
+    <title>Find Five | Estatisticas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <link rel="stylesheet" href="../assets/bootstrap/bootstrap-5.0.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/css/normalize.css">
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/estatisticas.css">
+</head>
+<body class="bg-primary-custom">
+    <div class="container position-relative d-flex justify-content-center align-items-center min-vh-100">
+        <a class="btn-voltar" href="jogo.html">Voltar</a>
+        <div class="row shadow box-area bg-light-custom rounded-3 w-100 mx-5">
+            <div class="col-md-12 container position-relative d-flex justify-content-center align-items-center flex-column right-box pt-5 pt-md-2">
+                <img class="d-sm-none position-absolute top-0 start-50 translate-middle" src="../assets/img/logo.png" alt="logo-find-five" width="90">
+                <div class="col-md-12 container position-relative d-flex justify-content-center align-items-center flex-column right-box pt-2">
+                    <img class="logo d-none d-sm-flex position-absolute top-100 start-0 translate-middle" src="../assets/img/logo.png" alt="logo-find-five" width="180">
+                    <h1 class="text-light text-center">Distribuição de tentativas<br style="line-height: 1.5%;">ㅤ</h1>
+                    <div>
+                        <table style="width: 100%; line-height: 95%; align-content:center; vertical-align: baseline;" class="table table-borderless align-middle">
+                            <tr class="numbers">
+                                <th class="text-center">100</th>
+                                <th>ㅤㅤ</th>
+                                <th class="text-center">95%</th>
+                                <th>ㅤㅤ</th>
+                                <th class="text-center">2</th>
+                                <th>ㅤㅤ</th>
+                                <th class="text-center">93</th>
+                              </tr>
+                            <tr class="text-light types">
+                                <td class="text-center">jogos</td>
+                                <td>ㅤㅤ</td>
+                                <td class="text-center">de vitórias</td>
+                                <td>ㅤㅤ</td>
+                                <td class="text-center">vitórias<br> seguidas</td>
+                                <td>ㅤㅤ</td>
+                                <td class="text-center">melhor<br>sequência</td>
+                            </tr>
+                        </table>
+                     </div>
+                     <div id="chartContainer" style="height: 100%; width: 75%;" class="my-4"></div>  
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="square2">
+        <div>
+            <a href="jogo.html">Voltar</a>
+        </div>
+        <div class="img">
+            <img src="../assets/img/logo.png" width="22%" height="45%">
+        </div>
+        <h1 style="text-align: center; font-size: 125%;">Distribuição de tentativas<br style="line-height: 1.5%;">ㅤ</h1>
+        <div>
+            <table style="width: 100%; line-height: 95%; align-content:center; vertical-align: baseline;">
+                <tr style=" font-size: 110%;">
+                    <th style="color: #F95F2D;" >100</th>
+                    <th>ㅤㅤ</th>
+                    <th style="color: #F95F2D;">95%</th>
+                    <th>ㅤㅤ</th>
+                    <th style="color: #F95F2D;">2</th>
+                    <th>ㅤㅤ</th>
+                    <th style="color: #F95F2D;">93</th>
+                  </tr>
+
+                <tr>
+                    <td style="margin-top: 100px;">Jogos</td>
+                    <td>ㅤㅤ</td>
+                    <td>de vitórias</td>
+                    <td>ㅤㅤ</td>
+                    <td>vitórias<br> seguidas</td>
+                    <td>ㅤㅤ</td>
+                    <td>melhor<br>sequência</td>
+                </tr>
+            </table>
+        </div>
+        <div id="chartContainer" style="height: 1500px; width: 75%;"></div>
+    </div>-->
+    <script type="text/javascript">
+        window.onload = function () {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "dark2",
+                animationEnabled: true,
+                backgroundColor: "transparent",
+
+                axisY: {
+                    labelFontSize: 0,
+                    gridThickness: 0,
+                    lineThickness: 0
+                },
+
+                axisX: {
+                    title: "Nº de tentativas",
+                    titleFontSize: 20,
+                    labelFontSize: 20,
+                    gridThickness: 0,
+                    lineThickness: 1
+                },
+
+                legend: {
+                    cursor: "pointer",
+                    itemclick: function (e) {
+                        if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                            e.dataSeries.visible = false;
+                        }
+                        else {
+                            e.dataSeries.visible = true;
+                        }
+                        chart.render();
+                    }
+                },
+
+                data: [
+                    {
+                        type: "bar",
+                        dataPoints: [
+                            { label: "💀", y: 5, color: "#F95F2D", indexLabel: 5 + "%" },
+                            { label: "6", y: 15, color: "#F95F2D", indexLabel: 15 + "%", indexLabelAlign: "right" },
+                            { label: "5", y: 15, color: "#F95F2D", indexLabel: 15 + "%", indexLabelAlign: "right" },
+                            { label: "4", y: 20, color: "#F95F2D", indexLabel: 20 + "%", indexLabelAlign: "right" },
+                            { label: "3", y: 30, color: "#F95F2D", indexLabel: 30 + "%", indexLabelAlign: "right" },
+                            { label: "2", y: 10, color: "#F95F2D", indexLabel: 10 + "%", indexLabelAlign: "right" },
+                            { label: "1", y: 5, color: "#F95F2D", indexLabel: 5 + "%", indexLabelAlign: "right" }
+
+                        ],
+                        indexLabelPlacement: "outside",
+                        indexLabelFontSize: "17"
+                    }
+                ],
+            });
+            chart.render();
+
+            let credit = document.querySelector('.canvasjs-chart-credit')
+            credit.style.color = '#4393ac'
+
+        }
+    </script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
