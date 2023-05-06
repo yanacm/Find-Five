@@ -60,6 +60,7 @@ class EscritaView {
     nextLinha(){
         if(!this.isCompleto()){
             const cardPointer = this.#elemento.querySelector('.active')
+            console.log(cardPointer)
             cardPointer.classList.remove('active')
             this.#linha_atual++;
             this.#elemento = this.#grid.children[this.#linha_atual];

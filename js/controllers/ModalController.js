@@ -2,7 +2,9 @@ import { Modal } from '../models/game/Modal.js'
 import { ModalView } from '../views/ModalView.js'
 
 export class ModalController {
+
     constructor() {
+      this.btnReiniciar = null;
       this.modalView = new ModalView(document.querySelector("#box-modal"));
     }
   
@@ -11,7 +13,7 @@ export class ModalController {
       this.modalView.update(this.model);
     }
 
-    #showModal(){
+    showModal(){
       const myModal = new bootstrap.Modal(document.getElementById("modalEnd"));
       myModal.show();
     }

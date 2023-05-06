@@ -19,7 +19,7 @@ export class ModalView {
                 <h3 class="text-white">${model.title}</h3>
                 <h3 class="text-white mb-5">A palavra certa é: ${model.palavra}</h3>
               </div>
-              <button class="btn bg-none text-white m-3 mt-3" data-bs-dismiss="modal"><i class="fa-solid fa-rotate-right"></i>Jogar novamente</button>
+              <button id="btn-reiniciar" class="btn bg-none text-white m-3 mt-3" data-bs-dismiss="modal"><i class="fa-solid fa-rotate-right"></i>Jogar novamente</button>
             </div>
           </div>
         </div>

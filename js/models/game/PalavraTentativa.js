@@ -2,6 +2,7 @@ class PalavraTentativa extends Palavra {
 
     #pointer;
     #state_pointer;
+    #can_add;
     #tamanhoAtual;
 
     constructor(){
@@ -9,9 +10,11 @@ class PalavraTentativa extends Palavra {
         this.#pointer = 0;
         this.#state_pointer = true;
         this.#tamanhoAtual = 0;
+        this.#can_add = true;
     }
 
     addLetra(letra){
+        if(!this.#can_add) return;
         if(this.#state_pointer){
             this.letras[this.#pointer] = letra;
             this.#tamanhoAtual = this.#tamanhoAtual < this.tamanhoMax ? this.#tamanhoAtual + 1 : this.tamanhoMax;
@@ -83,7 +86,10 @@ class PalavraTentativa extends Palavra {
     }
 
     checkGanhou(){
-        console.log(this.states.map( (state) => {state === 'correct'}))
+        let x = this.states.filter(state => state == "correct").length;
+        let y = this.tamanhoMax;
+        let ganhou = x == y;
+        return ganhou;
     }
 
     resetPalavra(){
@@ -91,7 +97,16 @@ class PalavraTentativa extends Palavra {
         this.letras = [undefined, undefined, undefined, undefined, undefined];
         this.states = ['empty', 'empty', 'empty', 'empty', 'empty']
         this.#pointer = 0;
+        this.#can_add = true;
         this.#tamanhoAtual = 0;
+    }
+
+    disable(){
+        this.#can_add = false;
+    }
+
+    enable(){
+        this.#can_add = true;
     }
 
     get state_pointer(){

@@ -28,9 +28,8 @@ class TentativaView {
             })
     
             this.cardGiro()
-            this.updateNextLinha()
+            if(!this.#palavra.checkGanhou()) this.updateNextLinha()
         }
-        this.#palavra.checkGanhou()
     }
 
     checkTentativa(){
@@ -90,6 +89,8 @@ class TentativaView {
     }
 
     updateNextLinha(){
+        this.#palavra.disable();
+
         if(this.#numero + 1 < this.#qtdMax){
             let nextLinha = this.#elemento.nextElementSibling;
             setTimeout( () => {
@@ -98,8 +99,14 @@ class TentativaView {
                 cardsFront.forEach( card => {
                     card.classList.replace('empty', 'write');
                 })
+                this.#palavra.enable();
             }, 2000)
         }
+    }
+
+
+    get qtdMax(){
+        return this.#qtdMax
     }
 
     get palavra(){
