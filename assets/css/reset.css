@@ -9,6 +9,13 @@
     --color-almost: #37D8D6;
     --color-wrong: #304D5B;
 
+    --alert-bg-success: #1CBB59;
+    --alert-bg-wrong: #fabf76;
+    --alert-text-success:#0d5e2c;
+    --alert-text-wrong:#b87a11;
+    --alert-bg-dark-success:#1a9b4b;
+    --alert-bg-dark-wrong:#e7a85b;
+
     --color-modal:#4394acc6;
 }
 

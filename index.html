@@ -7,6 +7,7 @@
     <title>Find Five | Bem Vindo</title>
     <link rel="icon" type="image/png" href="assets/img/icon-find-five.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/bootstrap/bootstrap-5.0.2-dist/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/normalize.css">
     <link rel="stylesheet" href="assets/css/reset.css">
@@ -28,22 +29,24 @@
                 <div class="header-text mb-2 mt-4">
                     <h1 class="text-white" style="font-weight: 700;">Criar Conta</h1>
                 </div>
-                <form action="#" class="row align-items-center m-5">
+                <form action="#" class="row align-items-center m-5" id="form-registro">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control form-control-lg bg-light fs-6 text-center shadow-sm" placeholder="Nome">
+                        <input type="text" class="form-control form-control-lg bg-light fs-6 text-center shadow-sm" placeholder="Nome" name="nome">
                     </div>
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control form-control-lg bg-light fs-6 text-center shadow-sm" placeholder="Email">
+                        <input type="email" class="form-control form-control-lg bg-light fs-6 text-center shadow-sm" placeholder="Email" name="email">
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control form-control-lg bg-light fs-6 text-center shadow-sm" placeholder="Senha">
+                        <input type="password" class="form-control form-control-lg bg-light fs-6 text-center shadow-sm" placeholder="Senha" name="senha">
                     </div>
                     <div class="d-grid gap-2 col-8 col-sm-6 mx-auto my-5">
-                        <button class="btn btn-primary-custom btn-border-pop shadow" style="font-size: 13px;" type="submit">Registrar-se</button>
+                        <button class="btn btn-primary-custom btn-border-pop shadow" style="font-size: 13px;" type="submit" id="btn-form-registro">Registrar-se</button>
                       </div>
                 </form>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/paginas/index.js"></script>
 </body>
 </html>
