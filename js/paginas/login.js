@@ -2,6 +2,9 @@ const urlAuth = "https://apifindfive-qull.vercel.app";
 
 const formLogin = document.querySelector('#form-login');
 const btnLogin = document.querySelector("#btn-form-login");
+const btnGoogle = document.querySelector('#btn-google');
+
+getTokenGoogle();
 
 formLogin.addEventListener('submit', async (evento) => {
     evento.preventDefault();
@@ -28,6 +31,28 @@ formLogin.addEventListener('submit', async (evento) => {
     btnLogin.disabled = false;
     formLogin.reset();
 })
+
+btnGoogle.addEventListener('click', async (evento) => {
+    try {
+
+        window.location.href = `${urlAuth}/auth/google`;
+    
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+function getTokenGoogle(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+
+    console.log(token);
+
+    if(!token) return;
+
+    setCookie('usuario_find_five', token);
+    window.location.href = 'regras.html';
+}
 
 function setCookie(name, value) {
     let cookieString = name + '=' + encodeURIComponent(value);

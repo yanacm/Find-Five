@@ -1,5 +1,3 @@
-const urlAuth = "https://apifindfive-qull.vercel.app";
-
 const buttonsLogout = document.querySelectorAll('.btn-sair');
 
 buttonsLogout.forEach( btn => {
