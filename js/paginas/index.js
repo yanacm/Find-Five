@@ -1,5 +1,4 @@
-//const urlAuth = "https://apifindfive-qull.vercel.app";
-const urlAuth = "http://localhost:3000";
+const urlAuth = "https://apifindfive-qull.vercel.app";
 
 const formRegistro = document.querySelector("#form-registro");
 const btnRegistro = document.querySelector("#btn-form-registro");
