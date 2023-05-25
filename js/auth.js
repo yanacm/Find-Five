@@ -1,4 +1,5 @@
-const urlAuth = "https://apifindfive-qull.vercel.app";
+//const urlAuth = "https://apifindfive-qull.vercel.app";
+const urlAuth = "http://localhost:3000";
 
 (async () => {
     try {

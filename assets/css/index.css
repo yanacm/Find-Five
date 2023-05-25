@@ -9,7 +9,7 @@
 .alert{
     z-index: 3;
     min-width: 420px;
-    position: absolute;
+    position: fixed;
     transform: translate(-50%, 0%);
     top: 20px;
     left: 50%;
@@ -26,9 +26,10 @@
     transform: translateY(-50%);
     left: 0;
     top: 50%;
-    height: 100%;
+    height: auto;
     width: 10%;
-    padding: 12px;
+    padding: 0;
+    margin: 0;
     font-size: 20px;
 }
 
@@ -45,9 +46,10 @@
     transform: translateY(-50%);
     right: 0;
     top: 50%;
-    height: 100%;
+    height: auto;
     width: 10%;
-    padding: 15px;
+    padding: 0;
+    margin: 0;
     cursor: pointer;
 }
 
@@ -56,21 +58,17 @@
     color: var(--alert-text-success);
     border-left: 7px solid var(--alert-text-success);
 }
-.alert.success > .close-btn{
-    background-color: var(--alert-bg-dark-success);
-}
 
 .alert.wrong{
     background-color: var(--alert-bg-wrong);
     color: var(--alert-text-wrong);
     border-left: 7px solid var(--alert-text-wrong);
 }
-.alert.wrong > .close-btn{
-    background-color: var(--alert-bg-dark-wrong);
-}
+
 .alert.show{
     animation: show_alert 1s ease forwards;
 }
+
 .alert.hide{
     animation: hide_alert 1s ease forwards;
 }
@@ -91,3 +89,17 @@
         transform: translate(-50%, -150%);
     }
 }
+
+@media (max-width: 767.98px) {
+    .alert{
+        min-width: 80%;
+        max-width: 80%;
+    }
+
+    .alert .icon{
+        font-size: 15px;
+    }
+    .alert .msg{
+        font-size: 12px;
+    }
+}   
