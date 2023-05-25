@@ -1,5 +1,3 @@
-const urlAuth = "https://apifindfive-qull.vercel.app";
-
 const btnSair = document.querySelector('#btn-sair');
 
 btnSair.addEventListener('click', e => {
