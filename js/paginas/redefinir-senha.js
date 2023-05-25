@@ -2,25 +2,38 @@ const urlAuth = "https://apifindfive-qull.vercel.app";
 
 const formRedefinir = document.querySelector('#form-redefinir');
 const btnRedefinir = document.querySelector('#btn-form');
+const btnGoogle = document.querySelector('#btn-google');
 
 formRedefinir.addEventListener('submit', async (evento) => {
     evento.preventDefault();
 
     btnRedefinir.disabled = true;
 
+    const headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://yanacm.github.io'
+    };
+
     const data = {
         email: formRedefinir.elements.email.value
     };
 
+    console.log(data);
+
     try {
         
-        const response = await axios.post(`${urlAuth}/auth/reset-senha`, data);
-
-        const alert = alertSuccess(response.data['msg'])
-        document.body.appendChild(alert)
-        alertHide(alert.querySelector('.alert'));
+        const response = await axios.post(`${urlAuth}/auth/reset-senha`, data, {headers});
+        
+        if(response && response.data){
+            const alert = alertSuccess(response.data['msg'])
+            document.body.appendChild(alert)
+            alertHide(alert.querySelector('.alert'));
+        }else{
+            throw new Error('Resposta inválida');
+        }
     
     } catch (error) {
+        console.log(error);
         const alert = alertWrong(error.response.data['msg']);
         document.body.appendChild(alert)
         alertHide(alert.querySelector('.alert'));
@@ -28,6 +41,34 @@ formRedefinir.addEventListener('submit', async (evento) => {
     btnRedefinir.disabled = false;
     formRedefinir.reset();
 });
+
+btnGoogle.addEventListener('click', async (evento) => {
+    try {
+
+        window.location.href = `${urlAuth}/auth/google`;
+    
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+function getTokenGoogle(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+
+    console.log(token);
+
+    if(!token) return;
+
+    setCookie('usuario_find_five', token);
+    window.location.href = 'regras.html';
+}
+
+function setCookie(name, value) {
+    let cookieString = name + '=' + encodeURIComponent(value);
+  
+    document.cookie = cookieString;
+}
 
 const alertSuccess = (mensagem) => {
     const div = document.createElement('div');

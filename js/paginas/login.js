@@ -1,5 +1,6 @@
 const urlAuth = "https://apifindfive-qull.vercel.app";
 
+
 const formLogin = document.querySelector('#form-login');
 const btnLogin = document.querySelector("#btn-form-login");
 const btnGoogle = document.querySelector('#btn-google');
@@ -21,6 +22,7 @@ formLogin.addEventListener('submit', async (evento) => {
         const response = await axios.post(`${urlAuth}/auth/login`, data);
     
         setCookie('usuario_find_five', response.data['token']);
+
         window.location.href = 'regras.html';
     
     } catch (error) {
@@ -45,12 +47,14 @@ btnGoogle.addEventListener('click', async (evento) => {
 function getTokenGoogle(){
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
-
-    console.log(token);
+    const tokenGoogle = urlParams.get('tokenGoogle');
 
     if(!token) return;
-
     setCookie('usuario_find_five', token);
+
+    if(tokenGoogle){
+        setCookie('usuario_google', tokenGoogle);
+    }
     window.location.href = 'regras.html';
 }
 
