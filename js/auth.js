@@ -1,4 +1,5 @@
 const urlAuth = "https://apifindfive-qull.vercel.app";
+const urlGame = "https://findfiveapi.onrender.com";
 
 (async () => {
     try {
@@ -9,7 +10,8 @@ const urlAuth = "https://apifindfive-qull.vercel.app";
             }
         })
     
-        console.log(response.data['msg'])
+        console.log(response.data['msg']);
+
     } catch (error) {;
         console.log(error);
     
