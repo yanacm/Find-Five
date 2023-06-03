@@ -18,4 +18,5 @@ buttonsLogout.forEach( btn => {
     
         window.location.href = '../index.html';
     })
-})
+});
+
