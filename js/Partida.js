@@ -18,7 +18,7 @@ export class Partida {
 
           const palavraTenta = new PalavraTentativa();
           let qtd = sorteio.qtd;
-          const escrita = new EscritaView(palavraTenta, qtd); 
+          const escrita = new EscritaView(palavraTenta, qtd);
           escrita.updateGrid(sorteio.tentativas, sorteio.states);
           const modal = new ModalController();
 
@@ -85,6 +85,7 @@ export class Partida {
         
             if(!escrita.isCompleto()){
               escrita.update();
+              const controllerEscrita = new EscritaController(palavraTenta, escrita);
             }
           }
         })();
