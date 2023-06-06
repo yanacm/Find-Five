@@ -18,7 +18,7 @@ window.onload = function () {
                 }
             });
 
-            let data = response.data.msg;
+            let data = response.data.data;
             tentativas = data;
 
             renderizaGrafico();

@@ -1,4 +1,6 @@
-class EscritaController{
+
+
+class EscritaController {
 
     #palavraTentativa;
     #celulas;
