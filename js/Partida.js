@@ -5,7 +5,7 @@ export class Partida {
 
     constructor(){
         this.iniciar();
-        this.urlStats = "https://apifindfive-two.vercel.app";
+        this.urlStats = "https://find-five-api-n9nm.vercel.app";
     }
 
     async iniciar(){
