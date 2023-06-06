@@ -1,5 +1,4 @@
 const urlAuth = "https://apifindfive-qull.vercel.app";
-const urlGame = "https://findfiveapi.onrender.com";
 
 (async () => {
     try {
@@ -8,7 +7,7 @@ const urlGame = "https://findfiveapi.onrender.com";
             headers: {
                 'Authorization': 'Bearer ' + token
             }
-        })
+        });
     
         console.log(response.data['msg']);
 

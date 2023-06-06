@@ -5,8 +5,10 @@ class TentativaView {
     #elemento;
     #qtdMax;
     #sorteio;
+    #url;
 
     constructor(palavra, numero, sorteio){
+        this.#url = 'https://apifindfive-two.vercel.app'
         this.#palavra = palavra;
         this.#numero = numero;
         this.#sorteio = sorteio;
@@ -18,7 +20,7 @@ class TentativaView {
     update(){
         if(this.#numero < this.#qtdMax){
             const letras = this.#palavra.letras;
-            this.checkTentativa()
+            this.checkTentativa();
             letras.forEach( (letra, i) => {
                 let coluna = this.#elemento.children[i]
                 let front = coluna.querySelector('.front')
@@ -70,6 +72,7 @@ class TentativaView {
         }
 
         this.#palavra.states = estates;
+        this.atualizarPartida();
     }
 
     removerAcentos(str) {
@@ -101,6 +104,28 @@ class TentativaView {
                 })
                 this.#palavra.enable();
             }, 2000)
+        }
+    }
+
+    async atualizarPartida(){
+        const letras = (this.#palavra.letras).map(letra => letra.valor);
+        const palavra = letras.join("");
+        const states = this.palavra.states;
+        
+        const data = {
+            palavra: palavra,
+            estates: states
+        }
+        const token = getCookie('usuario_find_five');
+        try {
+          const res = await axios.put(`${this.#url}/partida`, {data: data}, {
+            headers: {
+              'Authorization': 'Bearer ' + token
+            }
+          });
+          
+        } catch (error) {
+          console.log(error);
         }
     }
 

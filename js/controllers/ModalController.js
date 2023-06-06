@@ -6,6 +6,12 @@ export class ModalController {
     constructor() {
       this.btnReiniciar = null;
       this.modalView = new ModalView(document.querySelector("#box-modal"));
+      
+    }
+
+    init() {
+      this.btnReiniciar = document.getElementById("btn-reiniciar");
+      this.btnReiniciar.addEventListener("click", this.reiniciarJogo.bind(this));
     }
   
     updateText(title, palavra) {
@@ -16,5 +22,10 @@ export class ModalController {
     showModal(){
       const myModal = new bootstrap.Modal(document.getElementById("modalEnd"));
       myModal.show();
+      this.init();
+    }
+
+    reiniciarJogo(){
+      location.reload(true);
     }
 }

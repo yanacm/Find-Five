@@ -5,6 +5,7 @@ export class Partida {
 
     constructor(){
         this.iniciar();
+        this.urlStats = "https://apifindfive-two.vercel.app";
     }
 
     async iniciar(){
@@ -13,13 +14,18 @@ export class Partida {
           this.resetGrid();
           await sorteio.sortear();
         
+          const self = this;
+
           const palavraTenta = new PalavraTentativa();
-          let qtd = 0;
+          let qtd = sorteio.qtd;
           const escrita = new EscritaView(palavraTenta, qtd); 
+          escrita.updateGrid(sorteio.tentativas, sorteio.states);
           const modal = new ModalController();
+
           console.log(sorteio.palavra)
         
-          const tecladoVirtual = new TecladoVirtual(clickTeclado)
+          const tecladoVirtual = new TecladoVirtual(clickTeclado);
+          tecladoVirtual.atualizarStates(sorteio.tentativas, sorteio.states);
         
           const meuTeclado = new TecladoFisico(tecla => {
             clickTeclado(tecla)
@@ -47,25 +53,33 @@ export class Partida {
         
             if(palavraTenta.isCompleto() && tecla == 'enter'){
               const tentativa = new TentativaView(palavraTenta, qtd, sorteio);
+              
               tentativa.update();
-        
+              
+              tecladoVirtual.atualizarPartida(palavraTenta.letras, palavraTenta.states);
+              
               if(!palavraTenta.checkGanhou()) {
                 palavraTenta.resetPalavra();
                 escrita.nextLinha();
                 qtd++;
               }
               if(qtd == tentativa.qtdMax) {
+                self.perder();
                 setTimeout( () => {
                   modal.updateText("Que Pena!", sorteio.palavra);
                   modal.showModal()
+                  sorteio.deleteSorteio();
                 }, 2000)
               }
             }
         
             if(palavraTenta.checkGanhou()){
+              self.ganhar(qtd + 1);
               setTimeout( () => {
+                
                 modal.updateText("Parabéns!", sorteio.palavra);
                 modal.showModal()
+                sorteio.deleteSorteio();
               }, 2000)
             }
         
@@ -214,4 +228,40 @@ export class Partida {
           </div>    
         `
     }
+
+    async ganhar(qtd){
+      await this.atualizarEstatisticas('ganhar', qtd);
+    }
+
+    async perder(){
+      await this.atualizarEstatisticas('perder', 7);
+    }
+
+    async atualizarEstatisticas(resultado, qtd){
+      const token = getCookie('usuario_find_five');
+      
+      try {
+        const res = await axios.put(`${this.urlStats}/estatisticas/${resultado}`, {}, {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        });
+        
+      } catch (error) {
+        console.log(error);
+      }
+
+      try {
+        const res = await axios.put(`${this.urlStats}/tentativas/${qtd}`, {}, {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        });
+        
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+
 }
