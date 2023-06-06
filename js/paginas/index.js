@@ -29,7 +29,7 @@ formRegistro.addEventListener('submit', async e => {
     }
     btnRegistro.disabled = false
     formRegistro.reset()
-})
+});
 
 const alertSuccess = (mensagem) => {
     const div = document.createElement('div');
@@ -82,5 +82,26 @@ function alertDelete(elemento){
     setTimeout(() => {
         elemento.remove();
     }, 1000)
+}
+
+function setCookie(name, value) {
+    let cookieString = name + '=' + encodeURIComponent(value);
+  
+    document.cookie = cookieString;
+}
+
+function getCookie(name) {
+    const cookieString = decodeURIComponent(document.cookie);
+    const cookies = cookieString.split(';');
+  
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+  
+      if (cookie.startsWith(name + '=')) {
+        return cookie.substring(name.length + 1);
+      }
+    }
+
+    return '';
 }
 

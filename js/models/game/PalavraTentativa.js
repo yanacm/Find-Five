@@ -16,8 +16,11 @@ class PalavraTentativa extends Palavra {
     addLetra(letra){
         if(!this.#can_add) return;
         if(this.#state_pointer){
+            
+            if(this.letras[this.#pointer] == undefined){
+                this.#tamanhoAtual = this.#tamanhoAtual < this.tamanhoMax ? this.#tamanhoAtual + 1 : this.tamanhoMax;
+            }
             this.letras[this.#pointer] = letra;
-            this.#tamanhoAtual = this.#tamanhoAtual < this.tamanhoMax ? this.#tamanhoAtual + 1 : this.tamanhoMax;
         }
         if(this.isCompleto()){
             this.disablePointer();
@@ -65,6 +68,7 @@ class PalavraTentativa extends Palavra {
     }
 
     movePointer(valor){
+        
         if(this.isCompleto() && !this.#state_pointer){
             this.#pointer = valor < 0 ? 0 : this.tamanhoMax - 1;
             this.enablePointer();
@@ -82,6 +86,7 @@ class PalavraTentativa extends Palavra {
     }
 
     isCompleto(){
+        
         return this.#tamanhoAtual === this.tamanhoMax;
     }
 

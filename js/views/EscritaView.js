@@ -11,7 +11,8 @@ class EscritaView {
         this.#qtd_linhas = 6;
         this.#grid = document.querySelector('.grid-palavras');
         this.#elemento = this.#grid.children[this.#linha_atual];
-        this.update()
+        this.update();
+        this.initGrid();
     }
     
     update(){
@@ -60,11 +61,39 @@ class EscritaView {
     nextLinha(){
         if(!this.isCompleto()){
             const cardPointer = this.#elemento.querySelector('.active')
-            console.log(cardPointer)
             cardPointer.classList.remove('active')
             this.#linha_atual++;
             this.#elemento = this.#grid.children[this.#linha_atual];
         }
+    }
+
+    initGrid(){
+        let colunas = this.#elemento.querySelectorAll('.front');
+        
+        colunas.forEach(coluna => {
+            coluna.classList.replace('empty','write');
+        })
+    }
+
+    updateGrid(tentativas, estates){
+        tentativas.forEach( (palavra, index) => {
+            let elemento = this.#grid.children[index];
+            let colunas = elemento.querySelectorAll('.col');
+            let stateTemp = estates[index];
+            let letras = palavra.split("");
+            colunas.forEach((coluna, i) => {
+                
+                coluna.classList.add('active');
+                let card = coluna.querySelector('.back')
+                let front = coluna.querySelector('.front');
+                card.innerHTML = letras[i];
+                card.style.transition = 'transform 0s';
+                front.style.transition = 'transform 0s';
+                card.classList.replace('empty', stateTemp[i]);
+            })
+
+        });
+        
     }
 
     get palavra(){
