@@ -1,4 +1,4 @@
-const urlStats = "https://apifindfive-two.vercel.app";
+const urlStats = "https://find-five-api-n9nm.vercel.app";
 
 const qtdJogos = document.querySelector('#qtd-jogos');
 const taxaVitorias = document.querySelector('#taxa-vitorias');
