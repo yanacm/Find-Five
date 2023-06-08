@@ -4,6 +4,7 @@ import { Sorteio } from "./models/game/Sorteio.js";
 export class Partida {
 
     constructor(){
+        this.isPlaying = false;
         this.iniciar();
         this.urlStats = "https://find-five-api-n9nm.vercel.app";
     }
@@ -23,6 +24,8 @@ export class Partida {
           const modal = new ModalController();
 
           console.log(sorteio.palavra)
+
+          self.isPlaying = true;
         
           const tecladoVirtual = new TecladoVirtual(clickTeclado);
           tecladoVirtual.atualizarStates(sorteio.tentativas, sorteio.states);
@@ -50,8 +53,12 @@ export class Partida {
             if(tecla == 'backspace'){
               palavraTenta.popLetra();
             }
-        
-            if(palavraTenta.isCompleto() && tecla == 'enter'){
+
+            if(palavraTenta.isCompleto() && tecla == 'enter' && !self.isPlaying){
+              location.reload(true);
+            }
+
+            if(palavraTenta.isCompleto() && tecla == 'enter' && self.isPlaying){
               const tentativa = new TentativaView(palavraTenta, qtd, sorteio);
               
               tentativa.update();
@@ -65,6 +72,7 @@ export class Partida {
               }
               if(qtd == tentativa.qtdMax) {
                 self.perder();
+                self.isPlaying = false;
                 setTimeout( () => {
                   modal.updateText("Que Pena!", sorteio.palavra);
                   modal.showModal()
@@ -73,8 +81,9 @@ export class Partida {
               }
             }
         
-            if(palavraTenta.checkGanhou()){
+            if(palavraTenta.checkGanhou() && self.isPlaying){
               self.ganhar(qtd + 1);
+              self.isPlaying = false;
               setTimeout( () => {
                 
                 modal.updateText("Parabéns!", sorteio.palavra);
