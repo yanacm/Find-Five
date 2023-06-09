@@ -4,6 +4,8 @@ const urlAuth = "https://apifindfive-qull.vercel.app";
 const formLogin = document.querySelector('#form-login');
 const btnLogin = document.querySelector("#btn-form-login");
 const btnGoogle = document.querySelector('#btn-google');
+const spinner = document.querySelector('#btn-form-login .spinner');
+const textSpinner = document.querySelector('#btn-form-login .text-btn');
 
 getTokenGoogle();
 
@@ -11,6 +13,8 @@ formLogin.addEventListener('submit', async (evento) => {
     evento.preventDefault();
 
     btnLogin.disabled = true;
+    textSpinner.textContent = 'Carregando';
+    spinner.classList.replace('spinner', 'spinner-border');
 
     const data = {
         email: formLogin.elements.email.value,
@@ -26,12 +30,15 @@ formLogin.addEventListener('submit', async (evento) => {
         window.location.href = 'regras.html';
     
     } catch (error) {
+        formLogin.reset();
+        btnLogin.disabled = false;
+        textSpinner.textContent = 'Entrar';
+        spinner.classList.replace('spinner-border', 'spinner');
+
         const alert = alertWrong(error.response.data['msg']);
         document.body.appendChild(alert)
         alertHide(alert.querySelector('.alert'));
     }
-    btnLogin.disabled = false;
-    formLogin.reset();
 })
 
 btnGoogle.addEventListener('click', async (evento) => {
