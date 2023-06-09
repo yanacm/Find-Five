@@ -5,11 +5,13 @@ export class Partida {
 
     constructor(){
         this.isPlaying = false;
+        this.isTyping = true;
         this.iniciar();
         this.urlStats = "https://find-five-api-n9nm.vercel.app";
     }
 
     async iniciar(){
+        const preloaderWrapper = document.querySelector('.preloader-wrapper');
         const sorteio = new Sorteio();
         (async () => {
           this.resetGrid();
@@ -29,28 +31,30 @@ export class Partida {
         
           const tecladoVirtual = new TecladoVirtual(clickTeclado);
           tecladoVirtual.atualizarStates(sorteio.tentativas, sorteio.states);
+
+          preloaderWrapper.classList.add('fade-out-animation');
         
           const meuTeclado = new TecladoFisico(tecla => {
             clickTeclado(tecla)
-            if(tecla != 'arrowright' && tecla != 'arrowleft'){
+            if(tecla != 'arrowright' && tecla != 'arrowleft' && self.isTyping){
               tecladoVirtual.clickTeclaFisica(tecla)
             }
           });
         
           function clickTeclado(tecla){
         
-            if(tecla == 'arrowright'){
+            if(tecla == 'arrowright' && self.isTyping){
               palavraTenta.movePointer(1);
             }
-            if(tecla == 'arrowleft'){
+            if(tecla == 'arrowleft' && self.isTyping){
               palavraTenta.movePointer(-1);
             }
         
-            if(tecla.match(/^[a-z]$/)){
+            if(tecla.match(/^[a-z]$/) && self.isTyping){
                 palavraTenta.addLetra(new Letra(tecla.toUpperCase()));
             }
         
-            if(tecla == 'backspace'){
+            if(tecla == 'backspace' && self.isPlaying){
               palavraTenta.popLetra();
             }
 
@@ -60,6 +64,7 @@ export class Partida {
 
             if(palavraTenta.isCompleto() && tecla == 'enter' && self.isPlaying){
               const tentativa = new TentativaView(palavraTenta, qtd, sorteio);
+              self.isTyping = false;
               
               tentativa.update();
               
@@ -79,6 +84,10 @@ export class Partida {
                   sorteio.deleteSorteio();
                 }, 2000)
               }
+
+              setTimeout(() => {
+                self.isTyping = true;
+              }, 2000)
             }
         
             if(palavraTenta.checkGanhou() && self.isPlaying){
