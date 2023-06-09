@@ -2,6 +2,25 @@
     --opacity-faixa: 100%;
 }
 
+.preloader-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    transition: all .4s ease;
+}
+
+.fade-out-animation{
+    opacity: 0;
+    visibility: hidden;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
