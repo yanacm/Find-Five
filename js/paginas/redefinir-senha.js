@@ -3,11 +3,15 @@ const urlAuth = "https://apifindfive-qull.vercel.app";
 const formRedefinir = document.querySelector('#form-redefinir');
 const btnRedefinir = document.querySelector('#btn-form');
 const btnGoogle = document.querySelector('#btn-google');
+const spinner = document.querySelector('#btn-form .spinner');
+const textSpinner = document.querySelector('#btn-form .text-btn');
 
 formRedefinir.addEventListener('submit', async (evento) => {
     evento.preventDefault();
 
     btnRedefinir.disabled = true;
+    textSpinner.textContent = 'Carregando';
+    spinner.classList.replace('spinner', 'spinner-border');
 
     const headers = {
         'Content-Type': 'application/json',
@@ -17,8 +21,6 @@ formRedefinir.addEventListener('submit', async (evento) => {
     const data = {
         email: formRedefinir.elements.email.value
     };
-
-    console.log(data);
 
     try {
         
@@ -33,13 +35,15 @@ formRedefinir.addEventListener('submit', async (evento) => {
         }
     
     } catch (error) {
-        console.log(error);
+        textSpinner.textContent = 'Redefinir';
+        spinner.classList.replace('spinner-border', 'spinner');
+        formRedefinir.reset();
+
         const alert = alertWrong(error.response.data['msg']);
         document.body.appendChild(alert)
         alertHide(alert.querySelector('.alert'));
     }
     btnRedefinir.disabled = false;
-    formRedefinir.reset();
 });
 
 btnGoogle.addEventListener('click', async (evento) => {
