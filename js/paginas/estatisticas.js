@@ -9,6 +9,8 @@ window.onload = function () {
 
     var tentativas = [];
 
+    getEstatisticas();
+
     const getTentativas = async () => {
         try {
             const token = getCookie('usuario_find_five');
@@ -22,6 +24,8 @@ window.onload = function () {
             tentativas = data;
 
             renderizaGrafico();
+            const preloaderWrapper = document.querySelector('.preloader-wrapper');
+            preloaderWrapper.classList.add('fade-out-animation');
         } catch (error) {
             console.log(error);
         }
@@ -87,6 +91,7 @@ window.onload = function () {
         credit.style.color = '#4393ac'
     }
 
+
 }
 
 
@@ -107,5 +112,3 @@ const getEstatisticas = async () => {
         console.log(error);
     }
 }
-
-getEstatisticas();
