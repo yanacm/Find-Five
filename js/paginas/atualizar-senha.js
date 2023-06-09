@@ -2,11 +2,15 @@ const urlAuth = "https://apifindfive-qull.vercel.app";
 
 const formAtualizar = document.querySelector('#form-atualizar');
 const btnAtualizar = document.querySelector('#btn-form');
+const spinner = document.querySelector('#btn-form .spinner');
+const textSpinner = document.querySelector('#btn-form .text-btn');
 
 formAtualizar.addEventListener('submit', async (evento) => {
     evento.preventDefault();
 
     btnAtualizar.disabled = true;
+    textSpinner.textContent = 'Carregando';
+    spinner.classList.replace('spinner', 'spinner-border');
 
     const data = {
         senha: formAtualizar.elements.senha.value,
@@ -28,12 +32,15 @@ formAtualizar.addEventListener('submit', async (evento) => {
         alertHide(alert.querySelector('.alert'));
     
     } catch (error) {
+        btnAtualizar.disabled = false;
+        formAtualizar.reset();
+        textSpinner.textContent = 'Redefinir';
+        spinner.classList.replace('spinner-border', 'spinner');
+    
         const alert = alertWrong(error.response.data['msg']);
         document.body.appendChild(alert)
         alertHide(alert.querySelector('.alert'));
     }
-    btnAtualizar.disabled = false;
-    formAtualizar.reset();
 });
 
 function getToken(){
