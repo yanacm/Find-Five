@@ -2,11 +2,15 @@ const urlAuth = "https://apifindfive-qull.vercel.app";
 
 const formRegistro = document.querySelector("#form-registro");
 const btnRegistro = document.querySelector("#btn-form-registro");
+const spinner = document.querySelector('#btn-form-registro .spinner');
+const textSpinner = document.querySelector('#btn-form-registro .text-btn');
 
 formRegistro.addEventListener('submit', async e => {
     e.preventDefault();
 
     btnRegistro.disabled = true;
+    textSpinner.textContent = 'Carregando';
+    spinner.classList.replace('spinner', 'spinner-border');
 
     const data = {
         nome: formRegistro.elements.nome.value,
@@ -23,12 +27,15 @@ formRegistro.addEventListener('submit', async e => {
         alertHide(alert.querySelector('.alert'));
     
     } catch (error) {
+        btnRegistro.disabled = false
+        formRegistro.reset()
+        textSpinner.textContent = 'Cadastrar';
+        spinner.classList.replace('spinner-border', 'spinner');
+
         const alert = alertWrong(error.response.data['msg']);
         document.body.appendChild(alert)
         alertHide(alert.querySelector('.alert'));
     }
-    btnRegistro.disabled = false
-    formRegistro.reset()
 });
 
 const alertSuccess = (mensagem) => {
