@@ -27,15 +27,17 @@ formRegistro.addEventListener('submit', async e => {
         alertHide(alert.querySelector('.alert'));
     
     } catch (error) {
-        btnRegistro.disabled = false
-        formRegistro.reset()
-        textSpinner.textContent = 'Cadastrar';
-        spinner.classList.replace('spinner-border', 'spinner');
-
+        
         const alert = alertWrong(error.response.data['msg']);
         document.body.appendChild(alert)
         alertHide(alert.querySelector('.alert'));
     }
+
+    btnRegistro.disabled = false
+    formRegistro.reset()
+    textSpinner.textContent = 'Cadastrar';
+    spinner.classList.replace('spinner-border', 'spinner');
+
 });
 
 const alertSuccess = (mensagem) => {
