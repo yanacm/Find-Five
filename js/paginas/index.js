@@ -13,9 +13,9 @@ formRegistro.addEventListener('submit', async e => {
     spinner.classList.replace('spinner', 'spinner-border');
 
     const data = {
-        nome: formRegistro.elements.nome.value,
-        email: formRegistro.elements.email.value,
-        senha: formRegistro.elements.senha.value
+        nome: formRegistro.elements.nome.value.trim(),
+        email: formRegistro.elements.email.value.trim(),
+        senha: formRegistro.elements.senha.value.trim()
     };
 
     try {
