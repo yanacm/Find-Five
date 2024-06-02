@@ -13,8 +13,8 @@ formAtualizar.addEventListener('submit', async (evento) => {
     spinner.classList.replace('spinner', 'spinner-border');
 
     const data = {
-        senha: formAtualizar.elements.senha.value,
-        confirmSenha: formAtualizar.elements.confirmSenha.value
+        senha: formAtualizar.elements.senha.value.trim(),
+        confirmSenha: formAtualizar.elements.confirmSenha.value.trim()
     };
 
     const token = getToken();
@@ -30,10 +30,14 @@ formAtualizar.addEventListener('submit', async (evento) => {
         const alert = alertSuccess(response.data['msg'])
         document.body.appendChild(alert)
         alertHide(alert.querySelector('.alert'));
+
+        btnAtualizar.disabled = false;
+        formAtualizar.reset();
+        textSpinner.textContent = 'Redefinir';
+        spinner.classList.replace('spinner-border', 'spinner');
     
     } catch (error) {
         btnAtualizar.disabled = false;
-        formAtualizar.reset();
         textSpinner.textContent = 'Redefinir';
         spinner.classList.replace('spinner-border', 'spinner');
     

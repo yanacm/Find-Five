@@ -17,8 +17,8 @@ formLogin.addEventListener('submit', async (evento) => {
     spinner.classList.replace('spinner', 'spinner-border');
 
     const data = {
-        email: formLogin.elements.email.value,
-        senha: formLogin.elements.senha.value
+        email: formLogin.elements.email.value.trim(),
+        senha: formLogin.elements.senha.value.trim()
     };
 
     try {
@@ -30,7 +30,6 @@ formLogin.addEventListener('submit', async (evento) => {
         window.location.href = 'regras.html';
     
     } catch (error) {
-        formLogin.reset();
         btnLogin.disabled = false;
         textSpinner.textContent = 'Entrar';
         spinner.classList.replace('spinner-border', 'spinner');

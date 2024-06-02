@@ -19,7 +19,7 @@ formRedefinir.addEventListener('submit', async (evento) => {
     };
 
     const data = {
-        email: formRedefinir.elements.email.value
+        email: formRedefinir.elements.email.value.trim()
     };
 
     try {
@@ -30,6 +30,10 @@ formRedefinir.addEventListener('submit', async (evento) => {
             const alert = alertSuccess(response.data['msg'])
             document.body.appendChild(alert)
             alertHide(alert.querySelector('.alert'));
+
+            textSpinner.textContent = 'Redefinir';
+            spinner.classList.replace('spinner-border', 'spinner');
+            formRedefinir.reset();
         }else{
             throw new Error('Resposta inválida');
         }
@@ -37,7 +41,6 @@ formRedefinir.addEventListener('submit', async (evento) => {
     } catch (error) {
         textSpinner.textContent = 'Redefinir';
         spinner.classList.replace('spinner-border', 'spinner');
-        formRedefinir.reset();
 
         const alert = alertWrong(error.response.data['msg']);
         document.body.appendChild(alert)

@@ -25,18 +25,23 @@ formRegistro.addEventListener('submit', async e => {
         const alert = alertSuccess(response.data['msg'])
         document.body.appendChild(alert)
         alertHide(alert.querySelector('.alert'));
+
+
+        btnRegistro.disabled = false;
+        formRegistro.reset()
+        textSpinner.textContent = 'Cadastrar';
+        spinner.classList.replace('spinner-border', 'spinner');
     
     } catch (error) {
         
         const alert = alertWrong(error.response.data['msg']);
         document.body.appendChild(alert)
         alertHide(alert.querySelector('.alert'));
-    }
 
-    btnRegistro.disabled = false
-    formRegistro.reset()
-    textSpinner.textContent = 'Cadastrar';
-    spinner.classList.replace('spinner-border', 'spinner');
+        btnRegistro.disabled = false;
+        textSpinner.textContent = 'Cadastrar';
+        spinner.classList.replace('spinner-border', 'spinner');
+    }
 
 });
 
